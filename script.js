@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function addEvent(event) {
 
-        const cell = event.target.closest('.cell');
+        const cell = event.target;
 
         if (event.button === 0 && cell.innerHTML === "" && (result.length % 2 === 0)) {
             cell.innerHTML = "X";
@@ -47,8 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             text.innerHTML = "";
-            turn.innerHTML = "Turn: X";
-            result.splice(0, result.length);
+            if(result[result.length - 1] === "X"){
+                turn.innerHTML = "Turn: X";
+                result.splice(0, result.length);
+            }
+            else if(result[result.length - 1] === "O"){
+                turn.innerHTML = "Turn: O";
+                result.splice(0, result.length - 1);
+            }
         });
     }
 
